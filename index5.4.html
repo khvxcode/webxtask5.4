@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>VU22CSEN0100110</title>
+</head>
+<body bgcolor="skyblue;">
+    <h1 style="color:white">VALIDATION FORM</h1>
+    <form name="myForm" onsubmit="return validateForm()">
+        <label>Name:</label>
+        <input type="text" name="name" placeholder="Enter your name"><br><br>
+
+        <label>Email:</label>
+        <input type="text" name="email" placeholder="Enter your email"><br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter your password"><br><br>
+
+        <label>Phone Number:</label>
+        <input type="text" name="phone" placeholder="Enter your phone number"><br><br>
+
+        <button type="submit">Submit</button>
+        <p id="error" style="color: red;"></p>
+    </form>
+
+    <script>
+        function validateForm() {
+            var form = document.myForm;
+            var name = form.name.value;
+            var email = form.email.value;
+            var password = form.password.value;
+            var phone = form.phone.value;
+            var error = document.getElementById("error");
+
+            if (name.length < 3 || !isNaN(name)) {
+                error.innerText = "Name must be at least 3 letters and cannot contain numbers.";
+                return false;
+            }
+
+            if (!email.includes("@") || !email.includes(".")) {
+                error.innerText = "Please enter a valid email.";
+                return false;
+            }
+	       if (password.length < 8) {
+                error.innerText = "Password must be at least 8 characters.";
+                return false;
+            }
+
+            if (phone.length != 10 || isNaN(phone)) {
+                error.innerText = "Phone number must be 10 digits.";
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</body>
+</html>
